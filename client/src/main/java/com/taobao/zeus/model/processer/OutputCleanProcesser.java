@@ -1,6 +1,7 @@
 package com.taobao.zeus.model.processer;
 
-import net.sf.json.JSONObject;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 /**
  * 
  * 后置单元，用来删除过期文件
@@ -37,9 +38,9 @@ public class OutputCleanProcesser implements Processer{
 
 	@Override
 	public void parse(String config) {
-		JSONObject o=JSONObject.fromObject(config);
+		JSONObject o=JSON.parseObject(config);
 		path=o.getString("path");
-		days=o.getInt("days");
+		days=o.getIntValue("days");
 	}
 
 	public int getDays() {

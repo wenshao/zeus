@@ -1,6 +1,7 @@
 package com.taobao.zeus.model.processer;
 
-import net.sf.json.JSONObject;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 
 
 /**
@@ -36,7 +37,7 @@ public class ZooKeeperProcesser implements Processer{
 		if("".equals(configs)){
 			return;
 		}
-		JSONObject o=JSONObject.fromObject(configs);
+		JSONObject o=JSON.parseObject(configs);
 		useDefault=o.getBoolean("useDefault");
 		host=o.getString("host");
 		path=o.getString("path");

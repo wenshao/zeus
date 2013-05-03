@@ -1,10 +1,10 @@
 package com.taobao.zeus.model.processer;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
-import net.sf.json.JSONObject;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 
 /**
  * 可以将其他Job作为一个Processer处理单元，嵌入到当前Job中
@@ -39,12 +39,11 @@ public class JobProcesser implements Processer{
 
 	@Override
 	public void parse(String config) {
-		JSONObject o=JSONObject.fromObject(config);
+		JSONObject o = JSON.parseObject(config);
 		jobId=o.getString("jobId");
 		JSONObject kvc=o.getJSONObject("kvConfig");
 		Map<String, String> map=new HashMap<String, String>();
-		for(Iterator<Object> it=kvc.keys();it.hasNext();){
-			Object key=it.next();
+		for(String key : kvc.keySet()){
 			if(kvc.getString(key.toString())!=null){
 				map.put(key.toString(), kvc.getString(key.toString()));
 			}

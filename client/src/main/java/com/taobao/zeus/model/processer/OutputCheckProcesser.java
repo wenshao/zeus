@@ -1,6 +1,7 @@
 package com.taobao.zeus.model.processer;
 
-import net.sf.json.JSONObject;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 
 /**
  * 云梯产出数据大小验证
@@ -28,8 +29,8 @@ public class OutputCheckProcesser implements Processer{
 
 	@Override
 	public void parse(String config) {
-		JSONObject o=JSONObject.fromObject(config);
-		percent=o.getInt("percent");
+		JSONObject o=JSON.parseObject(config);
+		percent=o.getIntValue("percent");
 		path=o.getString("path");
 	}
 

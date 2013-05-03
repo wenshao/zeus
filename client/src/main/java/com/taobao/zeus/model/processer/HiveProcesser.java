@@ -3,14 +3,14 @@
  */
 package com.taobao.zeus.model.processer;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import net.sf.json.JSONObject;
-
 import org.apache.commons.lang.StringUtils;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 
 
 /**
@@ -46,13 +46,13 @@ public class HiveProcesser implements Processer {
 
 	@Override
 	public void parse(final String config) {
-		JSONObject o = JSONObject.fromObject(config);
+		JSONObject o = JSON.parseObject(config);
 		outputTables = parseOutputTables(o);
 		if (o.get("keepDays") != null) {
-			keepDays = o.getInt("keepDays");
+			keepDays = o.getIntValue("keepDays");
 		}
 		if (o.get("driftPercent") != null) {
-			driftPercent = o.getInt("driftPercent");
+			driftPercent = o.getIntValue("driftPercent");
 		}
 	}
 

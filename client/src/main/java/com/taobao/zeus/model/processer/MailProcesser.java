@@ -1,6 +1,7 @@
 package com.taobao.zeus.model.processer;
 
-import net.sf.json.JSONObject;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 
 /**
  * 邮件通知
@@ -26,7 +27,7 @@ public class MailProcesser implements Processer{
 
 	@Override
 	public void parse(String configs) {
-		JSONObject o=JSONObject.fromObject(configs);
+		JSONObject o=JSON.parseObject(configs);
 		setTemplate(o.getString("template"));
 		setSubject(o.getString("subject"));
 	}
